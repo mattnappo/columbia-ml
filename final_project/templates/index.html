@@ -15,12 +15,12 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="margin-bottom: 1%;">
-        <a class="navbar-brand" href="/">Predict</a>
+        <a class="navbar-brand" href="/">Loan Prediction</a>
     </nav>
 
     <div class="container">
         {% from "formhelpers.html" import render_field %}
-        <h1 class="text-center">Predict</h1>
+        <h1 class="text-center">Loan Prediction Model (Web Interface)</h1>
         <div class="container">
 
             <form action="" method="POST">
@@ -41,7 +41,7 @@
                     <h5 style="margin-top: 1.5%">Delinquincies in the last 2 years</h5>
                     {{ render_field(form.delinq, class_="form-control nice") }}
 
-                    <h5 style="margin-top: 1.5%">Inquiries in the last 2 months</h5>
+                    <h5 style="margin-top: 1.5%">Inquiries in the last 6 months</h5>
                     {{ render_field(form.inq, class_="form-control nice") }}
 
                     <h5 style="margin-top: 1.5%">Total Accounts</h5>

@@ -38,10 +38,8 @@ for term in df['term']:
 model_df = df.loc[:, minified_cols]
 model_df.insert(3, 'term', clean_terms)
 
-print(model_df.columns)
 # Prepare the dataset
 all_features = model_df.drop('total_pymnt', axis=1)
-print(all_features.columns)
 targeted_feature = model_df['total_pymnt']
 
 # Find the mode interest rate in the dataset
@@ -83,6 +81,7 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/', methods=['GET', 'POST'])
 def predict():
+  session['predicted'] = False
   form = BasicForm(request.form)
 
   if request.method == 'POST' and form.validate():
@@ -99,9 +98,6 @@ def predict():
       float(mode_int_rate),
     ]
 
-    print('REQUEST MADE')
-    print(user_input_data)
-
     # Use the model to predict given the data extracted from the website
     prediction = linreg.predict([user_input_data])
 
@@ -109,8 +105,13 @@ def predict():
     # nt = 12 * (form.term / 12)
     # required = form.cli * (1 + (r_over_n)) ** nt
     required = float(form.cli.data) * (1.0 + (mode_int_rate / 100.0))
-    percent = round((prediction / required)[0], 2)
+    percent = round((prediction / required)[0], 2) * 100.0
     session['predicted'] = True
+
+    if percent > 100:
+      percent = 100
+      prediction = [required]
+
     return render_template(
       'index.html',
 
