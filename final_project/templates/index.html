@@ -20,7 +20,7 @@
 
     <div class="container">
         {% from "formhelpers.html" import render_field %}
-        <h1 class="text-center">Encode</h1>
+        <h1 class="text-center">Predict</h1>
         <div class="container">
 
             <form action="" method="POST">
@@ -29,14 +29,14 @@
                     <h5 style="margin-top: 1.5%">CLI</h5>
                     {{ render_field(form.cli, class_="form-control nice") }}
 
-                    <h5 style="margin-top: 1.5%">Term (36 or 60 (months))</h5>
-                    {{ render_field(form.term, class_="form-control nice") }}
-
                     <h5 style="margin-top: 1.5%">Annual Income</h5>
                     {{ render_field(form.annual_inc, class_="form-control nice") }}
 
                     <h5 style="margin-top: 1.5%">Debt-to-income ratio</h5>
                     {{ render_field(form.dti, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Term (36 or 60 (months))</h5>
+                    {{ render_field(form.term, class_="form-control nice") }}
 
                     <h5 style="margin-top: 1.5%">Delinquincies in the last 2 years</h5>
                     {{ render_field(form.delinq, class_="form-control nice") }}
@@ -63,13 +63,13 @@
 
                     <div class="card-body">
                         <h5 class="card-title">Total Required Payback Amount</h5>
-                        <p class="card-text" style="margin-top:1%">{{ required }}</p>
+                        <p class="card-text" style="margin-top:1%">$ {{ required }}</p>
 
                         <h5 class="card-title">Predicted payback amount</h5>
-                        <p class="card-text" style="margin-top:1%">{{ prediction }} ({{ percent  }}%)</p>
+                        <p class="card-text" style="margin-top:1%">$ {{ prediction }} ({{ percent  }}%)</p>
 
                         <h5 class="card-title">At an interest rate of</h5>
-                        <p class="card-text" style="margin-top:1%">{{ int_rate }}</p>
+                        <p class="card-text" style="margin-top:1%">{{ int_rate }}%</p>
                     </div>
 
                 </div>

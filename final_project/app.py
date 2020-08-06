@@ -38,8 +38,10 @@ for term in df['term']:
 model_df = df.loc[:, minified_cols]
 model_df.insert(3, 'term', clean_terms)
 
+print(model_df.columns)
 # Prepare the dataset
 all_features = model_df.drop('total_pymnt', axis=1)
+print(all_features.columns)
 targeted_feature = model_df['total_pymnt']
 
 # Find the mode interest rate in the dataset
@@ -87,9 +89,9 @@ def predict():
     # Extract the data from the form
     user_input_data = [
       float(form.cli.data),
-      float(form.term.data),
       float(form.annual_inc.data),
       float(form.dti.data),
+      float(form.term.data),
       float(form.delinq.data),
       float(form.inq.data),
       float(form.total_acc.data),
@@ -107,14 +109,13 @@ def predict():
     # nt = 12 * (form.term / 12)
     # required = form.cli * (1 + (r_over_n)) ** nt
     required = float(form.cli.data) * (1.0 + (mode_int_rate / 100.0))
-    percent = prediction / required
-
+    percent = round((prediction / required)[0], 2)
     session['predicted'] = True
     return render_template(
       'index.html',
 
-      required=required,
-      prediction=prediction,
+      required=str(round(required, 2)),
+      prediction=str(round(prediction[0], 2)),
       percent=percent,
       int_rate=mode_int_rate,
      
