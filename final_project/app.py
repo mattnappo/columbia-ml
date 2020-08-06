@@ -84,7 +84,7 @@ def predict():
   form = BasicForm(request.form)
 
   if request.method == 'POST' and form.validate():
-    # Extract the data from the forum
+    # Extract the data from the form
     user_input_data = [
       float(form.cli.data),
       float(form.term.data),
@@ -103,9 +103,11 @@ def predict():
     # Use the model to predict given the data extracted from the website
     prediction = linreg.predict([user_input_data])
 
-    required = form.cli +
+    # r_over_n = (mode_int_rate / 100) / 12
+    # nt = 12 * (form.term / 12)
+    # required = form.cli * (1 + (r_over_n)) ** nt
+    required = float(form.cli.data) * (1.0 + (mode_int_rate / 100.0))
     percent = prediction / required
-
 
     session['predicted'] = True
     return render_template(
