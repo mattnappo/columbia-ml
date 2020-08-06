@@ -1,0 +1,28 @@
+#+TITLE: Project 3 presentation notes
+#+DATE: 2020-08-03
+
+* PRESENTATION
+** What are earnings?
+Earnings are perhaps one of the most important quantities in all of financial analysis. Earnings are a company's net income/profit. They help set the share price price, and most importantly, show profitability with respect to wall street's estimates. Every quarter, every company files it's earnings reports.
+** So I decided to look at how earnings affects the stock price and how the estimated earnings affect stock price.
+Estimated earnings meaning wall street analysts' estimates of the company's profit. I looked at revenue because I saw that that was more important for these high growth tech stocks.
+** Sometimes it's more important to look at revenue versus profit
+A lot of these young growth tech stocks aren't actually profiting much, sometimes even losing money. But that doesn't mean that the stock is going to go down. You can pull up the company's SEC filings to look at this...
+
+* CODE
+** Just a regular time series, we don't need to look at that really
+** Growth chart
+*** This is a nice way to visualize growth
+*** Every security here is normalized on $100
+**** Basically, if you put $100 into each of these, where would you be now. So it's a nice way to compare the growth of multiple securities.
+** Managed to get my hands on the daily earnings estimates of the 18 analysts on wall street covering ddog
+*** Q1: Expectations up stock up
+*** Then constant
+*** Then expectations up even though stock constant / down
+*** Global pandemic hit. Everything went down. But then maybe people started realizing that this software company would be valuable in the pandemic.
+*** Went up, so did expectations.
+*** Then held constant, expectations won't change when the stock is going up if the expectations are higher, as long as the stock doesn't go down.
+** You can do the same type of analysis for twilio, and that is what I did
+
+* CONCLUSION
+Through this analysis we can see how Wall Street is all about expectations. If everyone predicts that a stock is going to go up 10% on the quarter, and then it does that, the stock price isn't going to change that day. The stock price will have already reflected that change. The stock market is usually quick to move first.

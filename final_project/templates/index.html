@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <title>Loan Prediction Model</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <style>
+        .nice {
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="margin-bottom: 1%;">
+        <a class="navbar-brand" href="/">Predict</a>
+    </nav>
+
+    <div class="container">
+        {% from "formhelpers.html" import render_field %}
+        <h1 class="text-center">Encode</h1>
+        <div class="container">
+
+            <form action="" method="POST">
+                <div class="form-group">
+
+                    <h5 style="margin-top: 1.5%">CLI</h5>
+                    {{ render_field(form.cli, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Term (36 or 60 (months))</h5>
+                    {{ render_field(form.term, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Annual Income</h5>
+                    {{ render_field(form.annual_inc, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Debt-to-income ratio</h5>
+                    {{ render_field(form.dti, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Delinquincies in the last 2 years</h5>
+                    {{ render_field(form.delinq, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Inquiries in the last 2 months</h5>
+                    {{ render_field(form.inq, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Total Accounts</h5>
+                    {{ render_field(form.total_acc, class_="form-control nice") }}
+
+                    <h5 style="margin-top: 1.5%">Total Open Accounts</h5>
+                    {{ render_field(form.open_acc, class_="form-control nice") }}
+
+                </div>
+                <button type="submut" name="button" class="btn btn-primary">Predict</button>
+            </form>
+
+        </div>
+
+        {% if session['predicted'] == True %}
+            <hr>
+            <div class="container">
+                <div class="card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Total Required Payback Amount</h5>
+                        <p class="card-text" style="margin-top:1%">{{ required }}</p>
+
+                        <h5 class="card-title">Predicted payback amount</h5>
+                        <p class="card-text" style="margin-top:1%">{{ prediction }} ({{ percent  }}%)</p>
+
+                        <h5 class="card-title">At an interest rate of</h5>
+                        <p class="card-text" style="margin-top:1%">{{ int_rate }}</p>
+                    </div>
+
+                </div>
+            </div>
+        {% endif %}
+
+    	<br><br><br>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+<html>
